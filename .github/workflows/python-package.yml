@@ -47,7 +47,7 @@ jobs: # collection of jobs
 
   sonarqube-scanner: #job2
     name: SonarQube Scanner
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     
     steps:
@@ -66,6 +66,8 @@ jobs: # collection of jobs
           cat coverage.xml
 
       - uses: SonarSource/sonarqube-scan-action@v8.1.0 # v8.1.0
+        with:
+          skip-verify: true
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
