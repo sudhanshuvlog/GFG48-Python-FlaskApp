@@ -13,20 +13,17 @@ jobs: # collection of jobs
     runs-on: self-hosted # worker node - worker managed by github
     strategy:
       fail-fast: false
-      matrix:
-        python-version: ["3.11"]
 
     steps: # series of tasks, which will be executed in this job1
     - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
+    - name: Check Python Version
+      run: python3 --version
+
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        python -m pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python3 -m pip install --upgrade pip
+        python3 -m pip install flake8 pytest
+        if [ -f requirements.txt ]; then python3 -m pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
