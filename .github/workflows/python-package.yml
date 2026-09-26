@@ -10,7 +10,7 @@ on: #trigger point
 jobs: # collection of jobs
   build: #job1
     name: Build and Test
-    runs-on: ubuntu-latest # worker node - worker managed by github
+    runs-on: self-hosted # worker node - worker managed by github
     strategy:
       fail-fast: false
       matrix:
@@ -50,7 +50,7 @@ jobs: # collection of jobs
 
   sonarqube-scanner: #job2
     name: SonarQube Scanner
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     
     steps:
@@ -86,7 +86,7 @@ jobs: # collection of jobs
 
   docker-build-and-push: #job3
     name: Docker Build and Push
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: sonarqube-scanner
 
     steps:
