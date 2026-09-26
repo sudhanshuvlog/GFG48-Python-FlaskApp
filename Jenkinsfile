@@ -6,6 +6,7 @@ pipeline { // pipeline - deployment-pipeline
             steps { // the series of command , which will be executed in this job
                sh 'systemctl start docker'
                sh 'docker pull jinny1/gfg48-python-flaskapp:latest'
+               sh 'docker rm -f webserver'
                sh 'docker run -dit --name webserver -p 80:80 jinny1/gfg48-python-flaskapp:latest'
             }
         }
