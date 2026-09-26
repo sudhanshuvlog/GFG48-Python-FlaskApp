@@ -4,7 +4,7 @@ pipeline { // pipeline - deployment-pipeline
     stages { // collection of jobs
         stage('Deploy the application') { // job 1
             steps { // the series of command , which will be executed in this job
-               sh 'systemctkl start docker'
+               sh 'systemctl start docker'
                sh 'docker pull jinny1/gfg48-python-flaskapp:latest'
                sh 'docker run -dit --name webserver -p 80:80 gfg48-python-flaskapp '
             }
