@@ -1,14 +1,15 @@
 from flask import Flask
+from flask import render_template
+
 
 def create_app():
     app = Flask(__name__)
-    print("inside create_app function")
+    print("inside create_app function AND CHECK")
 
     @app.route('/')
     def home():
         print("inside home function")
-        return 'Hi hi GFG48 26-09-2026abcd12345'
-
+        return render_template('home.html')
     return app
 
 
